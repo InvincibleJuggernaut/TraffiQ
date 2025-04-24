@@ -1,0 +1,42 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title class="info_title">V.E.R.I.T.A | Time Travel</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/template.css') }}">
+</head>
+<body>
+    {% extends "template.html" %}
+    {% block content %}
+    <h2  class="info_heading" align="center">Go back in time !</h2>
+    <br>
+    <p id= "disclaimer_timetravel">*Choose any day of your liking from the past. Dates before April 17, 2025 currently not supported*</p>
+    <br>
+    <br>
+    <br>
+    <div id="date_div">
+    <form method="POST">
+    <select id="date_entry" name="intersectioninput" required>
+        <option value="Intersection 1">Intersection 1</option>
+        <option value="Intersection 2">Intersection 2</option>
+    </select>
+    <br>            
+
+    <select id="date_entry" name="laneinput" required>
+        <option value="Lane 1">Lane 1</option>
+        <option value="Lane 2">Lane 2</option>
+    </select>
+    <br>
+
+    <input id="date_entry" type="date" name="dayinput" min="2025-04-17" required>
+    <br>
+
+    <input type="submit" id="submit_day">
+    </form>
+    </div>
+    
+    
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trending</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/template.css') }}">
+</head>
+<body>
+    {% extends "template.html" %}
+    {% block content %}
+    <h1 id="trending_heading">Trending right now !</h1>
+
+
+    <table class="trending_table">
+        <tr>
+            <th>Rank</th>
+            <th>Pages</th>
+            <th>Page views</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><a href={{ link[0] }}>{{ top[0] }}</a></td>
+            <td>{{ view[0] }}</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><a href={{ link[1] }}>{{ top[1] }}</a></td>
+            <td>{{ view[1] }}</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td><a href={{ link[2] }}>{{ top[2] }}</a></td>
+            <td>{{ view[2] }}</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td><a href={{ link[3] }}>{{ top[3] }}</a></td>
+            <td>{{ view[3] }}</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td><a href={{ link[4] }}>{{ top[4] }}</a></td>
+            <td>{{ view[4] }}</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td><a href={{ link[5] }}>{{ top[5] }}</a></td>
+            <td>{{ view[5] }}</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td><a href={{ link[6] }}>{{ top[6] }}</a></td>
+            <td>{{ view[6] }}</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td><a href={{ link[7] }}>{{ top[7] }}</a></td>
+            <td>{{ view[7] }}</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td><a href={{ link[8] }}>{{ top[8] }}</a></td>
+            <td>{{ view[8] }}</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td><a href={{ link[9] }}>{{ top[9] }}</a></td>
+            <td>{{ view[9] }}</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td><a href={{ link[10] }}>{{ top[10] }}</a></td>
+            <td>{{ view[10] }}</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td><a href={{ link[11] }}>{{ top[11] }}</a></td>
+            <td>{{ view[11] }}</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td><a href={{ link[12] }}>{{ top[12] }}</a></td>
+            <td>{{ view[12] }}</td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td><a href={{ link[13] }}>{{ top[13] }}</a></td>
+            <td>{{ view[13] }}</td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td><a href={{ link[14] }}>{{ top[14] }}</a></td>
+            <td>{{ view[14] }}</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td><a href={{ link[15] }}>{{ top[15] }}</a></td>
+            <td>{{ view[15] }}</td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td><a href={{ link[16] }}>{{ top[16] }}</a></td>
+            <td>{{ view[16] }}</td>
+        </tr>
+        <tr>
+            <td>18</td>
+            <td><a href={{ link[17] }}>{{ top[17] }}</a></td>
+            <td>{{ view[17] }}</td>
+        </tr>
+        <tr>
+            <td>19</td>
+            <td><a href={{ link[18] }}>{{ top[18] }}</a></td>
+            <td>{{ view[18] }}</td>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td><a href={{ link[19] }}>{{ top[19] }}</a></td>
+            <td>{{ view[19] }}</td>
+        </tr>
+    </table>
+
+    <p id="disclaimer_trending">* These statistics reflect the page viewership of the past day. Therefore, they only update once a day *</p>
+
+    {% endblock %}
+
+</body>
+</html>

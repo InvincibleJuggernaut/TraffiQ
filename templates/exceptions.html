@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exception error</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/template.css') }}">
+</head>
+<body>
+    {% extends "template.html" %}
+    {% block content %}
+    <div id="error_disp">
+        <p>There seems to be a problem with the server. It could be on your side too. Check for the following :</p><br>
+        <p>Check whether you are connected to Internet.</p>
+        <p>Your search query probably has some typos.</p>
+        <p>Or else, you didn't mind the instructions/warnings before entering the query.</p>
+        <p>If the above ain't true, try with a different query perhaps. If the issue still persists, try again later.</p>
+    </div>
+    {% endblock %}
+
+</body>
+</html>

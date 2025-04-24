@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title class="info_title">{{ info_1_head }}</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/template.css') }}">
+</head>
+<body>
+    {% extends "template.html" %}
+    {% block content %}
+
+    <h2 class="info_heading"  align="center">{{ info_1_head }}</h2>
+    <p class="info">{{ info_1 }}</p>
+
+
+    {% endblock %}
+</body>
+</html>

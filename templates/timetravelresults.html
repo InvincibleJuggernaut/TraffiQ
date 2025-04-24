@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title class="info_title">V.E.R.I.T.A | Time Travel</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/template.css') }}">
+</head>
+<body>
+    {% extends "template.html" %}
+    {% block content %}
+    <h2  class="info_heading" align="center">Trends on {{ requested_day }}</h2>
+    
+    
+    <table class="trending_table">
+        <tr>
+            <th>S.No</th>
+            <th>Day/Time</th>
+            <th>Total traffic</th>
+        </tr>
+        {% for index in range(0, number) %}
+        <tr>
+            <td>{{ index+1 }}</td>
+            <td><a href={{ link[0]['time'] }}>{{ top[index] }}</a></td>
+            <td>{{ view[index] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    {% endblock %}
+</body>
+</html>e

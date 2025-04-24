@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>V.E.R.I.T.A</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/template.css') }}">
+
+  </head>
+  <body class="home_body">
+    {% extends "template.html" %}
+    {% block content %}
+
+    <h1 id="home_heading">V.E.R.I.T.A</h1>
+    <h4 id="home_sub_heading">Versatile Intelligent Traffic Regulation</h4>
+  <footer id="footer">
+    <p>Made by <a id="credit_link" target="_blank"><i><b>Invincibles</b></i></a></p>
+  </footer>
+
+    {% endblock %}
+  </body>
+</html>

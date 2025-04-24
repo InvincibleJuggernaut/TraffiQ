@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>V.E.R.I.T.A | Dashboard</title>
+    <style>
+    * {   
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    #nav_bar{
+    width:100%;
+    }
+    ul{
+        background-color: #000066;
+        list-style-type: none;
+        margin: 0 auto;
+        padding: 10px;
+        overflow: hidden;
+        color:white;
+    }
+    li{
+        float: left;
+    }
+    li a{
+        color: white;
+        display: inline;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+    }
+    li a:hover{
+        background-color: black;
+    }
+    
+    h1 {
+      padding: 200px 0px 0px 0px;
+      font-size: 2.5rem;
+      color: #333;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      color: #555;
+    }
+
+    .button-container {
+      margin-top: 40px;
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 20px 40px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.3s ease;
+    }
+
+    .btn-reset {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    .btn-set {
+      background-color: #27ae60;
+      color: white;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+    
+    </style>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/template.css') }}">
+
+  </head>
+  
+
+  <div id="nav_bar">
+    <ul>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('timetravel') }}">Time Travel</a></li>
+        <li><a href="recent">Recent</a></li>
+         <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        <li id="about_tab"><a href="{{ url_for('logout') }}">Logout</a></li>
+        <li id="about_tab"><a href="{{ url_for('about') }}">About</a></li>
+    </ul>
+  </div>
+
+  {% block content %}
+  <body class="m-0 p-0">
+
+    <div class="flex flex-col items-center justify-center h-screen bg-gray-900 text-white">
+        
+        <h1 align=center>Welcome to your dashboard!</h1>
+        <br>
+        <br>
+
+        <!-- Add your additional dashboard content here -->
+
+        <div class="button-container">
+        <form action="{{ url_for('trigger_reset') }}" method="post">
+            <button class="btn btn-reset" type="submit">Master Reset</button>
+        </form>
+        
+        <form action="{{ url_for('trigger_set') }}" method="post">
+            <button class="btn btn-set" type="submit">Master Set</button>
+        </form>
+
+        </div>
+
+    </div>
+{% endblock %}

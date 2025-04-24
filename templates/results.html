@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Top Results</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/template.css') }}">
+</head>
+<body>
+    {% extends "template.html" %}
+    {% block content %}
+    <h1 id="results_heading">Top Results</h1>
+    <div class="table_group">
+    <table class="results_table">
+        <tr>
+            <td><a href="info0.html">{{ result0 }}</a></td>
+        </tr>
+        <tr>
+            <td><a href="info1.html">{{ result1 }}</a></td>
+        </tr>
+        <tr>
+            <td><a href="info2.html">{{ result2 }}</a></td>
+        </tr>
+        <tr>
+            <td><a href="info3.html">{{ result3 }}</a></td>
+        </tr>
+    </table>
+    <table class="results_table">
+        <tr>
+            <td><a href="info4.html">{{ result4 }}</a></td>
+        </tr>
+        <tr>
+            <td><a href="info5.html">{{ result5 }}</a></td>
+        </tr>
+        <tr>
+            <td><a href="info6.html">{{ result6 }}</a></td>
+        </tr>
+        <tr>
+            <td><a href="info7.html">{{ result7 }}</a></td>
+        </tr>
+    </table>
+    <table class="results_table">
+        <tr>
+            <td><a href="info8.html">{{ result8 }}</a></td>
+        </tr>
+        <tr>
+            <td><a href="info9.html">{{ result9 }}</a></td>
+        </tr>
+        <tr>
+            <td><a href="info10.html">{{ result10 }}</a></td>
+        </tr>
+        <tr>
+            <td><a href="info11.html">{{ result11 }}</a></td>
+        </tr>
+    </table>
+    <table class="results_table">
+        <tr>
+            <td><a href="info12.html">{{ result12 }}</a></td>
+        </tr>
+        <tr>
+            <td><a href="info13.html">{{ result13 }}</a></td>
+        </tr>
+        <tr>
+            <td><a href="info14.html">{{ result14 }}</a></td>
+        </tr>
+        <tr>
+            <td><a href="info15.html">{{ result15 }}</a></td>
+        </tr>
+    </table>
+    </div>
+
+
+    {% endblock %}
+</body>
+</html>

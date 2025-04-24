@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>V.E.R.I.T.A | Recent</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/template.css') }}">
+</head>
+<body>
+    {% extends "template.html" %}
+    {% block content %}
+    <h1 id="trending_heading">Recent traffic trends</h1>
+    <br>
+    <div id="date_div">
+    <form method="POST">
+    <select id="date_entry" name="intersectioninput" required>
+        <option value="Intersection 1">Intersection 1</option>
+        <option value="Intersection 2">Intersection 2</option>
+    </select>
+    <br>            
+
+    <select id="date_entry" name="laneinput" required>
+        <option value="Lane 1">Lane 1</option>
+        <option value="Lane 2">Lane 2</option>
+    </select>
+    <br>
+    <input type="submit" id="submit_day">
+    </form>
+    </div>
+    <p align="center"><img src="data:image/png;base64,{{img|safe}}"></p>
+    <br>
+    <table class="trending_table">
+        <tr>
+            <th>S.No</th>
+            <th>Day</th>
+            <th>Total traffic</th>
+        </tr>
+        {% for index in range(0, number) %}
+        <tr>
+            <td>{{ index+1 }}</td>
+            <td>{{ list_of_topics[index] }}</a></td>
+            <td>{{ view[index] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+    {% endblock %}
+
+</body>
+</html>
