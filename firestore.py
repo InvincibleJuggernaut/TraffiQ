@@ -45,7 +45,7 @@ def manual_update_firestore(intersection_id, lane_id, minute, day):
 
     data_item = {
         'time': specific_datetime_ist,
-        'vehicles': 6
+        'vehicles': 7
     }
 
     lane_doc_ref = lane_collection.document(str(specific_datetime_ist))
@@ -102,15 +102,15 @@ def ping_firestore_override():
 
 
 def main():
-    '''days = [24, 23, 22, 21, 20, 19, 18, 17]
+    days = [24, 23, 22, 21, 20, 19, 18, 17]
     for day in days:
         minute = 30
         for i in range(0, 5):
-            manual_update_firestore("Intersection 2", "Lane 2", minute, day)
+            manual_update_firestore("Intersection 2", "Lane 1", minute, day)
             minute = minute + 1
             time.sleep(1)
-    '''
-    ping_firestore_override()
+    
+    #ping_firestore_override()
     '''documents = read_data("Intersection 1", "Lane 1")
 
     if documents:

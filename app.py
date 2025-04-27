@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import urllib3
 import json
-import wikipedia
 import os, io
 from io import StringIO
 import base64
@@ -21,10 +20,12 @@ from werkzeug.security import check_password_hash, generate_password_hash
 app= Flask(__name__)
 app.secret_key = 'your_secret_key'
 
-cred = credentials.Certificate("../secret.json")
+#cred = credentials.Certificate("secret.json")
+cred_dict = json.loads(os.environ["FIREBASE_CREDENTIALS"])
+cred = credentials.Certificate(cred_dict)
 firebase_admin.initialize_app(cred)
 db = firestore.client()
-print("CONNECTED!")
+#print("CONNECTED!")
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -81,15 +82,17 @@ def dashboard():
 @app.route('/trigger_reset', methods=['POST'])
 def trigger_reset():
     # Your Python function goes here
-    print("RESET BUTTON CLICKED!.")
+    
     update_override_values(True, False)
+    ##print("RESET BUTTON CLICKED!.")
     return redirect(url_for('dashboard'))
 
 @app.route('/trigger_set', methods=['POST'])
 def trigger_set():
     # Your Python function goes here
-    print("SET BUTTON CLICKED!.")
+    
     update_override_values(False, True)
+    ##print("SET BUTTON CLICKED!.")
     return redirect(url_for('dashboard'))
 
 @app.route('/logout', methods=['GET', 'POST'])
@@ -123,23 +126,23 @@ def read_data(intersection_id="Intersection 1", lane_id="Lane 1"):
         
     try:
         collection_path = 'Traffiq/'+ requested_intersection + '/'+ requested_lane
-        print(requested_intersection, requested_lane)
+        #print(requested_intersection, requested_lane)
         collection_ref = db.collection(collection_path)
         docs = collection_ref.stream()
 
         for doc in docs:
             data.append(doc.to_dict()) # Convert each document to a dictionary
-        print(data)
+        #print(data)
         #return data
 
     except Exception as e:
-        print(f"An error occurred: {e}")
+        #print(f"An error occurred: {e}")
         #return []
     
-    print("DATA", data)
+    #print("DATA", data)
     try:
         for x in data:
-            print("X:", x)
+            #print("X:", x)
             current_index = 0
             if (requested_day == str(x['time'])[:10]):
                 if str(x['time'])[:16] not in timestamp:
@@ -149,14 +152,14 @@ def read_data(intersection_id="Intersection 1", lane_id="Lane 1"):
                 else:
                     vehicles_count[current_index-1] +=  int(x['vehicles'])
     except:
-        print("No data in Firestore")
+        #print("No data in Firestore")
     
-    print("YES", vehicles_count)
-    print(timestamp)
+    #print("YES", vehicles_count)
+    #print(timestamp)
     '''
     for x in data:
         current_index = 0
-        print(str(x['time'])[:16])
+        #print(str(x['time'])[:16])
         if str(x['time'])[:16] not in timestamp:
             timestamp.append(str(x['time'])[:16])
             vehicles_count.append(int(x['vehicles']))
@@ -184,9 +187,9 @@ def recent():
         docs = query.stream()
         for doc in docs:
             data.append(doc.to_dict())
-            print(f"{doc.id} => {doc.to_dict()}")
+            #print(f"{doc.id} => {doc.to_dict()}")
     
-        print("STREAM", data)
+        #print("STREAM", data)
         
         '''collection_path = 'Traffiq/'+ "Intersection 1" + '/'+ "Lane 1"
         collection_ref = db.collection(collection_path)
@@ -194,11 +197,11 @@ def recent():
 
         for doc in docs:
             data.append(doc.to_dict()) # Convert each document to a dictionary
-        #print(data)
+        ##print(data)
         #return data'''
 
     except Exception as e:
-        print(f"An error occurred: {e}")
+        #print(f"An error occurred: {e}")
         #return []
 
     for x in data:
@@ -210,7 +213,7 @@ def recent():
         else:
             vehicles_count[current_index-1] +=  int(x['vehicles'])
 
-    print("TIMESTAMPS:",timestamp)
+    #print("TIMESTAMPS:",timestamp)
     
     plt.figure(figsize=(10, 10))
     bar = plt.bar(timestamp, vehicles_count)
@@ -267,9 +270,9 @@ def custom_recent():
         docs = query.stream()
         for doc in docs:
             data.append(doc.to_dict())
-            #print(f"{doc.id} => {doc.to_dict()}")
+            ##print(f"{doc.id} => {doc.to_dict()}")
     
-        #print("STREAM", data)
+        ##print("STREAM", data)
         
         '''collection_path = 'Traffiq/'+ "Intersection 1" + '/'+ "Lane 1"
         collection_ref = db.collection(collection_path)
@@ -277,16 +280,16 @@ def custom_recent():
 
         for doc in docs:
             data.append(doc.to_dict()) # Convert each document to a dictionary
-        #print(data)
+        ##print(data)
         #return data'''
 
     except Exception as e:
-        print(f"An error occurred: {e}")
+        #print(f"An error occurred: {e}")
         #return []
 
     for x in data:
         current_index = 0
-        print(x)
+        #print(x)
         if ((str(x['time'])[:10] not in timestamp) and len(timestamp) <= 7):
             timestamp.append(str(x['time'])[:10])
             vehicles_count.append(int(x['vehicles']))
@@ -294,11 +297,11 @@ def custom_recent():
         else:
             vehicles_count[current_index-1] +=  int(x['vehicles'])
 
-    print("TIMESTAMPS:",timestamp)
-    print("VEH", vehicles_count)
+    #print("TIMESTAMPS:",timestamp)
+    #print("VEH", vehicles_count)
     plt.figure(figsize=(10, 10))
     bar = plt.bar(timestamp, vehicles_count)
-    plt.title('Total views in the last 7 days')
+    plt.title('Total traffic in the last 7 days')
     bar[0].set_color('r')
     bar[1].set_color('g')
     bar[2].set_color('b')
@@ -309,8 +312,8 @@ def custom_recent():
     plt.legend((bar[0], bar[1], bar[2], bar[3], bar[4], bar[5], bar[6]), (
     timestamp[0], timestamp[1], timestamp[2], timestamp[3], timestamp[4], timestamp[5],
     timestamp[6]), loc="upper right")
-    plt.ylabel('Total views (in million)')
-    plt.xlabel('Topics')
+    plt.ylabel('Total traffic')
+    plt.xlabel('Days')
     ax=plt.gca()
     ax.axes.xaxis.set_ticks([])
     buf=io.BytesIO()
@@ -339,9 +342,10 @@ def update_override_values(master_reset_value, master_set_value):
             "Master Reset": master_reset_value,
             "Master Set": master_set_value,
         })
-        print("Successfully updated 'master reset' and 'master set' values.")
+        #print("Successfully updated 'master reset' and 'master set' values.")
+        #print("Set", master_reset_value, master_set_value)
     except Exception as e:
-        print(f"An error occurred: {e}")
+        #print(f"An error occurred: {e}")
         
 if __name__=="__main__":
     app.run(debug=True)
